@@ -326,7 +326,7 @@
 
           if(content !== '') cellClasses += 'fc-content';
           
-          html += (cellClasses !== '' ? '<div id"'+(day-1)+'" class="' + cellClasses.trim() + '">' : '<div>') + inner + '</div>';
+          html += (cellClasses !== '' ? '<div onclick="mostraratv('+(day-1)+','+(this.month+1)+','+(this.year)+')" class="' + cellClasses.trim() + '">' : '<div>') + inner + '</div>';
         }
 
         if(day > monthLength){ // stop making rows if we've run out of days
