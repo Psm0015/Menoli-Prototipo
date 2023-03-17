@@ -1,5 +1,7 @@
 package com.MenoliPrototipo;
 
+import java.time.LocalDate;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -22,6 +24,15 @@ public class AgendamentoController {
     public ResponseEntity<?> listarAgendamentos() {
         try {
             return ResponseEntity.ok().body(agendamentoRepository.findAll());
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e);
+        }
+        
+    }
+    @GetMapping("/{data}")
+    public ResponseEntity<?> listarAgendamentoDodia(@PathVariable LocalDate data) {
+        try {
+            return ResponseEntity.ok().body(agendamentoRepository.findByData(data));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e);
         }

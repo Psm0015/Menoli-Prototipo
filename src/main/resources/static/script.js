@@ -5,7 +5,7 @@ hoje = today.toLocaleDateString();
 document.getElementById('Data_hj').innerHTML = hoje
 
 function mostraratv(dia,mes,ano){
-    console.log(dia)
-    console.log(mes)
-    console.log(ano)
+    $.get(`/agendamentos/${ano}-${mes}-${dia}`, function( data ) {
+        console.log(data)
+    })
 }
