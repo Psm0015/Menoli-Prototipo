@@ -1,3 +1,13 @@
 .nav_background{
     background-image: linear-gradient( to left, #002C27, #023E36)!important; 
 }
+.titulohj{
+    text-align: center;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 25px;
+    color: white;
+    background-image: linear-gradient( to left, #002C27, #023E36)!important; 
+}
+.ai{
+    cursor: pointer;
+}

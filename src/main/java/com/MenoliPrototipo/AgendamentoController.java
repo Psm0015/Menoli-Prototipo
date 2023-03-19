@@ -64,6 +64,7 @@ public class AgendamentoController {
             agendamento.setFormaPagamento(agendamentoAtualizado.getFormaPagamento());
             agendamento.setCustoMaterial(agendamentoAtualizado.getCustoMaterial());
             agendamento.setExtratoPagamentoClinica(agendamentoAtualizado.getExtratoPagamentoClinica());
+            agendamento.setExtratoPagamentoDentista(agendamentoAtualizado.getExtratoPagamentoDentista());
             agendamentoRepository.save(agendamento);
 
             return ResponseEntity.ok().body("Agendamento Alterado com Sucesso!");

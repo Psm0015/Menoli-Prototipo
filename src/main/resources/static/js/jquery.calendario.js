@@ -324,7 +324,7 @@
           if(past) cellClasses += 'fc-past ';
           else cellClasses += 'fc-future ';
 
-          if(content !== '') cellClasses += 'fc-content';
+          // if(content !== '') cellClasses += 'fc-content';
           
           html += (cellClasses !== '' ? '<div onclick="mostraratv('+(day-1)+','+(this.month+1)+','+(this.year)+')" class="' + cellClasses.trim() + '">' : '<div>') + inner + '</div>';
         }

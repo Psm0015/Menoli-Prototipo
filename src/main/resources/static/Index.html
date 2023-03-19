@@ -12,6 +12,7 @@
     <link rel="stylesheet" type="text/css" href="css/demo.css" />
     <link rel="stylesheet" type="text/css" href="css/calendar.css" />
     <link rel="stylesheet" type="text/css" href="css/custom_2.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="js/modernizr.custom.63321.js"></script>
     <title>Document</title>
 </head>
@@ -29,7 +30,8 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a style="color: white;" class="nav-link" href="#">+ Novo Agendamento</a>
+                        <a onclick="opnmodal('agdnmodal')" style="color: white;" class="nav-link" href="#">+ Novo
+                            Agendamento</a>
                     </li>
                 </ul>
             </div>
@@ -51,10 +53,12 @@
                 </div>
             </div>
         </section>
+        <div id="Data_hj" class="titulohj">
+
+        </div>
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>DATA</th>
                     <th>NOME DO PACIENTE</th>
                     <th>TELEFONE</th>
                     <th>DENTISTA</th>
@@ -67,125 +71,162 @@
                     <th></th>
                 </tr>
             </thead>
-            <tbody id="Tabela do dia">
-                <tr>
-                    <td>01/01/2023</td>
-                    <td>João da Silva</td>
-                    <td>(11) 1111-1111</td>
-                    <td>Dr. José</td>
-                    <td>Limpeza</td>
-                    <td>R$ 100,00</td>
-                    <td>Cartão de crédito</td>
-                    <td>R$ 10,00</td>
-                    <td>R$ 60,00</td>
-                    <td>R$ 50,00</td>
-                </tr>
-                <tr>
-                    <td>05/02/2023</td>
-                    <td>Maria da Silva</td>
-                    <td>(11) 2222-2222</td>
-                    <td>Dr. João</td>
-                    <td>Extração de dente</td>
-                    <td>R$ 200,00</td>
-                    <td>Dinheiro</td>
-                    <td>R$ 20,00</td>
-                    <td>R$ 120,00</td>
-                    <td>R$ 80,00</td>
-                </tr>
-                <tr>
-                    <td>15/03/2023</td>
-                    <td>Pedro Pereira</td>
-                    <td>(11) 3333-3333</td>
-                    <td>Dra. Ana</td>
-                    <td>Tratamento de canal</td>
-                    <td>R$ 500,00</td>
-                    <td>Boleto bancário</td>
-                    <td>R$ 50,00</td>
-                    <td>R$ 300,00</td>
-                    <td>R$ 200,00</td>
-                </tr>
+            <tbody id="tableday">
+                
             </tbody>
         </table>
     </div><!-- /container -->
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-    <script type="text/javascript" src="js/jquery.calendario.js"></script>
-    <script type="text/javascript" src="js/data.js"></script>
-    <script type="text/javascript">
-        $(function () {
-            $(document).on('shown.calendar.calendario', function (e, instance) {
-                if (!instance) instance = cal;
-                var $cell = instance.getCell(new Date().getDate());
-                if ($cell.hasClass('fc-today')) $cell.trigger('click.calendario');
-            });
+    <div class="modal fade" id="agdnmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Novo Agendamento</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="data">Data</label>
+                            <input type="date" class="form-control" id="data">
+                        </div>
+                        <div class="form-group">
+                            <label for="nomePaciente">Nome do Paciente</label>
+                            <input type="text" class="form-control" id="nomePaciente"
+                                placeholder="Digite o nome do paciente">
+                        </div>
+                        <div class="form-group">
+                            <label for="telefone">Telefone</label>
+                            <input type="tel" class="form-control" id="telefone" placeholder="Digite o telefone">
+                        </div>
+                        <div class="form-group">
+                            <label for="dentista">Dentista</label>
+                            <input type="text" class="form-control" id="dentista"
+                                placeholder="Digite o nome do dentista">
+                        </div>
+                        <div class="form-group">
+                            <label for="procedimento">Procedimento</label>
+                            <input type="text" class="form-control" id="procedimento"
+                                placeholder="Digite o nome do procedimento">
+                        </div>
+                        <div class="form-group">
+                            <label for="valorProcedimento">Valor do Procedimento</label>
+                            <input type="number" step="0.01" class="form-control" id="valorProcedimento"
+                                placeholder="Digite o valor do procedimento">
+                        </div>
+                        <div class="form-group">
+                            <label for="formaPagamento">Forma de Pagamento</label>
+                            <select class="form-control" id="formaPagamento">
+                                <option>Cartão de crédito</option>
+                                <option>Boleto</option>
+                                <option>Dinheiro</option>
+                                <option>PIX</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="custoMaterial">Custo de Material</label>
+                            <input type="number" step="0.01" class="form-control" id="custoMaterial"
+                                placeholder="Digite o custo do material">
+                        </div>
+                        <div class="form-group">
+                            <label for="extratoPagamentoClinica">Extrato de Pagamento da Clínica</label>
+                            <input type="number" step="0.01" class="form-control" id="extratoPagamentoClinica"
+                                placeholder="Digite o extrato de pagamento da clínica">
+                        </div>
+                        <div class="form-group">
+                            <label for="extratoPagamentoDentista">Extrato de Pagamento do Dentista</label>
+                            <input type="number" step="0.01" class="form-control" id="extratoPagamentoDentista"
+                                placeholder="Digite o extrato de pagamento do dentista">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <button onclick="enviar()" type="button" class="btn btn-primary">Agendar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-            var transEndEventNames = {
-                'WebkitTransition': 'webkitTransitionEnd',
-                'MozTransition': 'transitionend',
-                'OTransition': 'oTransitionEnd',
-                'msTransition': 'MSTransitionEnd',
-                'transition': 'transitionend'
-            },
-                transEndEventName = transEndEventNames[Modernizr.prefixed('transition')],
-                $wrapper = $('#custom-inner'),
-                $calendar = $('#calendar'),
-                cal = $calendar.calendario({
-                    onDayClick: function ($el, data, dateProperties) {
-
-                        if (data.content.length > 0) {
-                            showEvents(data.content, dateProperties);
-                        }
-
-                    },
-                    caldata: codropsEvents,
-                    displayWeekAbbr: true,
-                    events: 'click'
-                }),
-                $month = $('#custom-month').html(cal.getMonthName()),
-                $year = $('#custom-year').html(cal.getYear());
-
-            $('#custom-next').on('click', function () {
-                cal.gotoNextMonth(updateMonthYear);
-            });
-            $('#custom-prev').on('click', function () {
-                cal.gotoPreviousMonth(updateMonthYear);
-            });
-
-            function updateMonthYear() {
-                $month.html(cal.getMonthName());
-                $year.html(cal.getYear());
-            }
-
-            // just an example..
-            function showEvents(contentEl, dateProperties) {
-
-                hideEvents();
-
-                var $events = $('<div id="custom-content-reveal" class="custom-content-reveal"><h4>Events for ' + dateProperties.monthname + ' ' + dateProperties.day + ', ' + dateProperties.year + '</h4></div>'),
-                    $close = $('<span class="custom-content-close"></span>').on('click', hideEvents);
-
-                // $events.append( contentEl.join('') , $close ).insertAfter( $wrapper );
-
-                // setTimeout( function() {
-                // $events.css( 'top', '0%' );
-                // }, 25 );
-
-            }
-            function hideEvents() {
-
-                var $events = $('#custom-content-reveal');
-                // if( $events.length > 0 ) {
-
-                // $events.css( 'top', '100%' );
-                // Modernizr.csstransitions ? $events.on( transEndEventName, function() { $( this ).remove(); } ) : $events.remove();
-
-                // }
-
-            }
-
-        });
-    </script>
 
 </body>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.calendario.js"></script>
+<script type="text/javascript" src="js/data.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $(document).on('shown.calendar.calendario', function (e, instance) {
+            if (!instance) instance = cal;
+            var $cell = instance.getCell(new Date().getDate());
+            if ($cell.hasClass('fc-today')) $cell.trigger('click.calendario');
+        });
+
+        var transEndEventNames = {
+            'WebkitTransition': 'webkitTransitionEnd',
+            'MozTransition': 'transitionend',
+            'OTransition': 'oTransitionEnd',
+            'msTransition': 'MSTransitionEnd',
+            'transition': 'transitionend'
+        },
+            transEndEventName = transEndEventNames[Modernizr.prefixed('transition')],
+            $wrapper = $('#custom-inner'),
+            $calendar = $('#calendar'),
+            cal = $calendar.calendario({
+                onDayClick: function ($el, data, dateProperties) {
+
+                    if (data.content.length > 0) {
+                        showEvents(data.content, dateProperties);
+                    }
+
+                },
+                caldata: codropsEvents,
+                displayWeekAbbr: true,
+                events: 'click'
+            }),
+            $month = $('#custom-month').html(cal.getMonthName()),
+            $year = $('#custom-year').html(cal.getYear());
+
+        $('#custom-next').on('click', function () {
+            cal.gotoNextMonth(updateMonthYear);
+        });
+        $('#custom-prev').on('click', function () {
+            cal.gotoPreviousMonth(updateMonthYear);
+        });
+
+        function updateMonthYear() {
+            $month.html(cal.getMonthName());
+            $year.html(cal.getYear());
+        }
+
+        // just an example..
+        function showEvents(contentEl, dateProperties) {
+
+            hideEvents();
+
+            var $events = $('<div id="custom-content-reveal" class="custom-content-reveal"><h4>Events for ' + dateProperties.monthname + ' ' + dateProperties.day + ', ' + dateProperties.year + '</h4></div>'),
+                $close = $('<span class="custom-content-close"></span>').on('click', hideEvents);
+
+            // $events.append( contentEl.join('') , $close ).insertAfter( $wrapper );
+
+            // setTimeout( function() {
+            // $events.css( 'top', '0%' );
+            // }, 25 );
+
+        }
+        function hideEvents() {
+
+            var $events = $('#custom-content-reveal');
+            // if( $events.length > 0 ) {
+
+            // $events.css( 'top', '100%' );
+            // Modernizr.csstransitions ? $events.on( transEndEventName, function() { $( this ).remove(); } ) : $events.remove();
+
+            // }
+
+        }
+
+    });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="script.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
     integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
