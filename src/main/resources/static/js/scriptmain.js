@@ -29,6 +29,9 @@ function preenchecalendário(data) {
   const daysInMonth = lastDayOfMonth;
   c = 0
   for (let i = 0; i < dayOfWeek; i++) {
+    if (c == 0) {
+      tabela += '<tr>'
+    }
     tabela += `<td class="text-center"></td>`
     c++
   }
@@ -43,21 +46,35 @@ function preenchecalendário(data) {
       tabela += '</tr>'
     }
   }
-  for (let i = 7; i > c; i--) {
-    tabela += `<td class="text-center"></td>`
-
+  
+  if (c == 7) {
+    for (let i = 7; i > c; i--) {
+      tabela += `<td class="text-center"></td>`
+  
+    }
+    c = 0
+    tabela += '</tr>'
   }
+  document.getElementById('anot').innerHTML = data.getFullYear();
+  document.getElementById('anot').value = data.getFullYear();
   document.getElementById('mesnm').innerHTML = getMonthName(data.getMonth());
   document.getElementById('mesnm').value = data.getMonth();
   document.getElementById('dias').innerHTML = tabela
 
-
 }
 function botaoant() {
-  const data = new Date(2023, document.getElementById('mesnm').value - 1, 1);
+  const data = new Date(document.getElementById('anot').value, document.getElementById('mesnm').value - 1, 1);
   preenchecalendário(data);
 }
 function botaoprox() {
-  const data = new Date(2023, document.getElementById('mesnm').value + 1, 1);
+  const data = new Date(document.getElementById('anot').value, document.getElementById('mesnm').value + 1, 1);
+  preenchecalendário(data);
+}
+function abotaoant() {
+  const data = new Date(document.getElementById('anot').value - 1, document.getElementById('mesnm').value, 1);
+  preenchecalendário(data);
+}
+function abotaoprox() {
+  const data = new Date(document.getElementById('anot').value + 1, document.getElementById('mesnm').value, 1);
   preenchecalendário(data);
 }

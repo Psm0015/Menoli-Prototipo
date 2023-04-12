@@ -27,6 +27,11 @@
         
         <div class="container mt-5">
             <div class="row justify-content-md-center">
+                <a onclick="abotaoant()" style="text-align: center;" class="col col-lg-2"><button style="border-radius: 50%;" type="button" class="btn btn-outline-primary"><</button></a>
+                <h5 id="anot" class="col-md-auto" class="text-center mb-4"></h5>
+                <a onclick="abotaoprox()" style="text-align: center;" class="col col-lg-2"><button style="border-radius: 50%;" type="button" class="btn btn-outline-primary">></button></a>
+            </div>
+            <div class="row justify-content-md-center">
                 <a style="text-align: center;" class="col col-lg-2"><button style="border-radius: 50%;" type="button" onclick="botaoant()" class="btn btn-outline-primary"><</button></a>
                 <h2 id="mesnm" class="col-md-auto" class="text-center mb-4"></h2>
                 <a onclick="botaoprox()" style="text-align: center;" class="col col-lg-2"><button style="border-radius: 50%;" type="button" class="btn btn-outline-primary">></button></a>
@@ -44,9 +49,7 @@
                         <th class="text-center">Sáb</th>
                     </tr>
                 </thead>
-                <tbody id="dias">
-
-                </tbody>
+                <tbody id="dias"></tbody>
             </table>
         </div>
     </body>
