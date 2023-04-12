@@ -1,29 +1,63 @@
 function getDaysInMonth(year, month) {
-    // Cria um novo objeto Date para o último dia do mês
-    // Note que o mês é representado com índices de 0 a 11 (0 é janeiro, 1 é fevereiro, etc.)
-    const lastDayOfMonth = new Date(year, month, 0);
-    
-    // Obtém o dia do mês do último dia (1 a 31)
-    const daysInMonth = lastDayOfMonth.getDate();
-    
-    // Retorna a quantidade de dias no mês
-    return daysInMonth;
+  numDias = new Date(year, month, 0).getDate();
+
+  return numDias;
+}
+function getDayOfWeek(year, month) {
+  // Array com os nomes dos dias da semana
+  const daysOfWeek = ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'];
+
+  const firstDayOfMonth = new Date(year, month, 1);
+
+  const dayOfWeek = firstDayOfMonth.getDay();
+
+  // Retorna o nome do dia da semana
+  return daysOfWeek[dayOfWeek];
+}
+function getMonthName(month) {
+  const nameOfMonth = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+
+  return nameOfMonth[month]
+}
+data_hoje = new Date();
+preenchecalendário(data_hoje);
+function preenchecalendário(data) {
+  tabela = "";
+  const firstDayOfMonth = new Date(data.getFullYear(), data.getMonth(), 1);
+  const dayOfWeek = firstDayOfMonth.getDay();
+  const lastDayOfMonth = new Date(data.getFullYear(), data.getMonth()+1, 0).getDate();
+  const daysInMonth = lastDayOfMonth;
+  c = 0
+  for (let i = 0; i < dayOfWeek; i++) {
+    tabela += `<td class="text-center"></td>`
+    c++
   }
-  function getDayOfWeek(year, month) {
-    // Array com os nomes dos dias da semana
-    const daysOfWeek = ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'];
-    
-    // Cria um novo objeto Date para o primeiro dia do mês
-    const firstDayOfMonth = new Date(year, month-1, 1);
-    
-    // Obtém o valor numérico do dia da semana (0 a 6)
-    const dayOfWeek = firstDayOfMonth.getDay();
-    
-    // Retorna o nome do dia da semana
-    return daysOfWeek[dayOfWeek];
+  for (let i = 1; i <= daysInMonth; i++) {
+    if (c == 0) {
+      tabela += '<tr>'
+    }
+    tabela += `<td value = '${i}' class="text-center">${i}</td>`
+    c++
+    if (c == 7) {
+      c = 0
+      tabela += '</tr>'
+    }
   }
-  for (let i = 1; i <= 12; i++) {
-    console.log(getDaysInMonth(2023,i))
-    console.log(getDayOfWeek(2023,i))
-    
+  for (let i = 7; i > c; i--) {
+    tabela += `<td class="text-center"></td>`
+
   }
+  document.getElementById('mesnm').innerHTML = getMonthName(data.getMonth());
+  document.getElementById('mesnm').value = data.getMonth();
+  document.getElementById('dias').innerHTML = tabela
+
+
+}
+function botaoant() {
+  const data = new Date(2023, document.getElementById('mesnm').value - 1, 1);
+  preenchecalendário(data);
+}
+function botaoprox() {
+  const data = new Date(2023, document.getElementById('mesnm').value + 1, 1);
+  preenchecalendário(data);
+}
