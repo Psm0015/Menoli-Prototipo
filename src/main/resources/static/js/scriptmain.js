@@ -39,27 +39,33 @@ function preenchecalendário(data) {
     if (c == 0) {
       tabela += '<tr>'
     }
-    tabela += `<td value = '${i}' class="text-center">${i}</td>`
+    tabela += `<td onclick = 'selecionardata(${i}, ${data.getMonth()}, ${data.getFullYear()})' value = '${i}' class="dian text-center">${i}</td>`
     c++
     if (c == 7) {
       c = 0
       tabela += '</tr>'
     }
   }
-  
-  if (c == 7) {
+  if (c>0 && c < 7) {
     for (let i = 7; i > c; i--) {
       tabela += `<td class="text-center"></td>`
   
     }
-    c = 0
-    tabela += '</tr>'
   }
+    
+    if (c > 0 && c < 7) {
+      tabela += '</tr>';
+    }
+  
   document.getElementById('anot').innerHTML = data.getFullYear();
   document.getElementById('anot').value = data.getFullYear();
   document.getElementById('mesnm').innerHTML = getMonthName(data.getMonth());
   document.getElementById('mesnm').value = data.getMonth();
   document.getElementById('dias').innerHTML = tabela
+  const dia = String(data_hoje.getDate()).padStart(2, '0');
+  const mes = String(data_hoje.getMonth() + 1).padStart(2, '0');
+  const ano = String(data_hoje.getFullYear());
+  document.getElementById("datatabela").innerHTML = `${dia}/${mes}/${ano}`
 
 }
 function botaoant() {
@@ -77,4 +83,11 @@ function abotaoant() {
 function abotaoprox() {
   const data = new Date(document.getElementById('anot').value + 1, document.getElementById('mesnm').value, 1);
   preenchecalendário(data);
+}
+function selecionardata(diaa, mess, anoo) {
+  const dataa = new Date(anoo,mess,diaa);
+  const d = String(dataa.getDate()).padStart(2, '0');
+  const m = String(dataa.getMonth() + 1).padStart(2, '0');
+  const a = String(dataa.getFullYear());
+  document.getElementById("datatabela").innerHTML = `${d}/${m}/${a}`
 }

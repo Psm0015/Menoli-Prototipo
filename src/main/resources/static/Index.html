@@ -24,17 +24,35 @@
     </head>
 
     <body>
-        
-        <div class="container mt-5">
-            <div class="row justify-content-md-center">
-                <a onclick="abotaoant()" style="text-align: center;" class="col col-lg-2"><button style="border-radius: 50%;" type="button" class="btn btn-outline-primary"><</button></a>
-                <h5 id="anot" class="col-md-auto" class="text-center mb-4"></h5>
-                <a onclick="abotaoprox()" style="text-align: center;" class="col col-lg-2"><button style="border-radius: 50%;" type="button" class="btn btn-outline-primary">></button></a>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light nav_background">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                    <img src="IMGS/Título Clinica.png" style="width: 160px;" alt="Logo da Clínica">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a onclick="opnmodal('agdnmodal')" style="color: white;" class="nav-link" href="#">+ Novo
+                                Agendamento</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-            <div class="row justify-content-md-center">
-                <a style="text-align: center;" class="col col-lg-2"><button style="border-radius: 50%;" type="button" onclick="botaoant()" class="btn btn-outline-primary"><</button></a>
+        </nav>
+        <div class="container mt-5">
+            <div class="row justify-content-md-center" style="background-color: #023E36; color: white;">
+                <a onclick="abotaoant()" style="text-align: center;" class="col col-lg-2"><button style="border-radius: 50%;" type="button" class="btn btn-outline-success"><</button></a>
+                <h5 id="anot" class="col-md-auto" class="text-center mb-4"></h5>
+                <a onclick="abotaoprox()" style="text-align: center;" class="col col-lg-2"><button style="border-radius: 50%;" type="button" class="btn btn-outline-success">></button></a>
+            </div>
+            <div class="row justify-content-md-center" style="background-color: #023E36; color: white;">
+                <a style="text-align: center;" class="col col-lg-2"><button style="border-radius: 50%;" type="button" onclick="botaoant()" class="btn btn-outline-success"><</button></a>
                 <h2 id="mesnm" class="col-md-auto" class="text-center mb-4"></h2>
-                <a onclick="botaoprox()" style="text-align: center;" class="col col-lg-2"><button style="border-radius: 50%;" type="button" class="btn btn-outline-primary">></button></a>
+                <a onclick="botaoprox()" style="text-align: center;" class="col col-lg-2"><button style="border-radius: 50%;" type="button" class="btn btn-outline-success">></button></a>
             </div>
 
             <table class="table table-bordered">
@@ -51,6 +69,29 @@
                 </thead>
                 <tbody id="dias"></tbody>
             </table>
+        </div>
+        <div class="container">
+            <h2 class="text-center" id="datatabela"></h2>
+            <table class="table table-striped table-success">
+                <thead>
+                    <tr>
+                        <th>HORÁRIO</th>
+                        <th>NOME DO PACIENTE</th>
+                        <th>TELEFONE</th>
+                        <th>DENTISTA</th>
+                        <th>PROCEDIMENTO</th>
+                        <th>VALOR DO PROCEDIMENTO</th>
+                        <th>FORMA DE PAGAMENTO</th>
+                        <th>CUSTO DE MATERIAL</th>
+                        <th>EXTRATO PAGAMENTO CLINICA</th>
+                        <th>EXTRATO PAGAMENTO DENTISTA</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                  
+                </tbody>
+              </table>
         </div>
     </body>
 
