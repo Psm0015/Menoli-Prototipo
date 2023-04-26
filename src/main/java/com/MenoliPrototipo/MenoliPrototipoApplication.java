@@ -13,7 +13,7 @@ public class MenoliPrototipoApplication {
 	
 	@GetMapping("")
 	public String home() {
-		return "Index.html";
+		return "index.html";
 	}
 
 }

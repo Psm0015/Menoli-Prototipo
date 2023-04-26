@@ -55,6 +55,7 @@ public class AgendamentoController {
         try {
             Agendamento agendamento = agendamentoRepository.findById(id).get();
 
+            agendamento.setHora(agendamentoAtualizado.getHora());
             agendamento.setData(agendamentoAtualizado.getData());
             agendamento.setNomePaciente(agendamentoAtualizado.getNomePaciente());
             agendamento.setTelefone(agendamentoAtualizado.getTelefone());

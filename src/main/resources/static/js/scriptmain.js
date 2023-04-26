@@ -66,6 +66,8 @@ function preenchecalendário(data) {
   const mes = String(data_hoje.getMonth() + 1).padStart(2, '0');
   const ano = String(data_hoje.getFullYear());
   document.getElementById("datatabela").innerHTML = `${dia}/${mes}/${ano}`
+  document.getElementById("datatabela").value = `${ano}-${mes}-${dia}`
+  listarAgendamentoDoDia(data_hoje)
 
 }
 function botaoant() {
@@ -86,8 +88,10 @@ function abotaoprox() {
 }
 function selecionardata(diaa, mess, anoo) {
   const dataa = new Date(anoo,mess,diaa);
+  listarAgendamentoDoDia(dataa)
   const d = String(dataa.getDate()).padStart(2, '0');
   const m = String(dataa.getMonth() + 1).padStart(2, '0');
   const a = String(dataa.getFullYear());
   document.getElementById("datatabela").innerHTML = `${d}/${m}/${a}`
+  document.getElementById("datatabela").value = `${d}/${m}/${a}`
 }

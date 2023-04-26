@@ -2,6 +2,7 @@ package com.MenoliPrototipo;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -23,6 +24,9 @@ public class Agendamento {
     
     @Column(nullable = false)
     private LocalDate data;
+
+    @Column(nullable = false)
+    private LocalTime hora;
 
     @Column(nullable = false)
     private String nomePaciente;
